@@ -23,7 +23,7 @@
   </div>
   <div id="gesture">Gesture: None</div>
 
-  <!-- Mediapipe scripts -->
+
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
@@ -66,14 +66,14 @@
           gestureLabel.innerText="Gesture: Open Hand → Save";
           saveCanvas();
         }
-        else if(fingers[1] && fingers[2]){ // index+middle
+        else if(fingers[1] && fingers[2]){ 
           gestureLabel.innerText="Gesture: Select Mode";
-          // Change color each time you show index+middle
+          
           colorIndex = (colorIndex+1) % colorList.length;
           drawingColor=colorList[colorIndex];
           lastX=0; lastY=0;
         }
-        else if(fingers[1] && !fingers[2]){ // index only
+        else if(fingers[1] && !fingers[2])
           gestureLabel.innerText="Gesture: Drawing";
           const ix = lm[8].x * output.width;
           const iy = lm[8].y * output.height;
@@ -105,13 +105,13 @@
     });
     camera.start();
 
-    // Finger detection
+  
     function fingersUp(lm){
       const tips=[4,8,12,16,20];
       const f=[];
-      // Thumb
+    
       f.push(lm[tips[0]].x < lm[3].x ? 1:0);
-      // Other fingers
+     
       for(let i=1;i<5;i++){
         f.push(lm[tips[i]].y < lm[tips[i]-2].y ? 1:0);
       }
@@ -128,3 +128,4 @@
   </script>
 </body>
 </html>
+
